@@ -115,7 +115,7 @@ if { $enable_dft == 1} {
 }
 
 
-syn_opt
+syn_opt -spatial
 
 # output reports
 set stage genus_phys
@@ -133,3 +133,7 @@ if { $enable_dft == 1} {
    write_scandef $top_design > ../outputs/${top_design}.$stage.scan.def
    write_sdc $top_design > ../outputs/${top_design}.$stage.sdc
 }
+
+write_db -all_root_attributes -verbose ../outputs/${top_design}.stage.db
+
+
