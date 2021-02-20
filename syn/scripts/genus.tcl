@@ -114,3 +114,6 @@ if { [info exists enable_dft] &&  $enable_dft  } {
    write_scandef $top_design > ../outputs/${top_design}.$stage.scan.def
    write_sdc $top_design > ../outputs/${top_design}.$stage.sdc
 }
+
+write_db -all_root_attributes -verbose ../outputs/${top_design}.stage.db
+
