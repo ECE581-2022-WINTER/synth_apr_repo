@@ -43,5 +43,6 @@ set sub_lib_type "saed32?vt_ saed32sram_ saed32io_wb_ saed32pll_"
 
 #set topdir /u/$env(USER)/PSU_RTL2GDS
 set topdir [ lindex [ regexp -inline "(.*)\(syn\|pt\|apr\)" [pwd] ] 1 ]
+set FCL 0
 
 
