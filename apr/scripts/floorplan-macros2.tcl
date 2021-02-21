@@ -123,6 +123,6 @@ if { $FCL == 1 } {
 # Should we uncomment this or just manually enter the command?
 # Do this section again after you like your postion of macros.  
 # Save the manually created or auto generated floorplan. 
-#write_def -include {cells ports blockages } -cell_types {macro} "../outputs/${top_design}.floorplan.macros.def"
+write_def -include {cells ports blockages } -cell_types {macro} "../outputs/${top_design}.floorplan.macros.def"
 
 

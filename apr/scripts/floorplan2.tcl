@@ -74,7 +74,7 @@ puts "Logfile message: writing def file now..."
 write_def -compress gzip -include {rows_tracks vias specialnets nets cells ports blockages } -cell_types {macro pad corner} "../outputs/${top_design}.floorplan.def"
 
 
-#write_def -include {cells ports blockages } -cell_types {macro pad corner} "../outputs/${top_design}.floorplan.macros.def"
+write_def -include {cells ports blockages } -cell_types {macro pad corner} "../outputs/${top_design}.floorplan.macros.def"
 
 puts "Logfile message: writing def file completed ..."
 
