@@ -34,7 +34,7 @@ set synth_corners_slow $slow_corner
 set synth_corners_fast $fast_corner
 set slow_metal Cmax_125
 set fast_metal Cmax_125
-set lib_types "stdcell_hvt stdcell_rvt stdcell_lvt sram_lp"
+set lib_types "stdcell_hvt stdcell_rvt stdcell_lvt sram"
 # Get just the main standard cells, srams
 set sub_lib_type "saed32?vt_ saed32sram_"
 
