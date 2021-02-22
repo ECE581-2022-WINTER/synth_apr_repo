@@ -115,5 +115,5 @@ if { [info exists enable_dft] &&  $enable_dft  } {
    write_sdc $top_design > ../outputs/${top_design}.$stage.sdc
 }
 
-write_db -all_root_attributes -verbose ../outputs/${top_design}.stage.db
+write_db -all_root_attributes -verbose ../outputs/${top_design}.$stage.db
 
