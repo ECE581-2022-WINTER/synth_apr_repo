@@ -59,3 +59,6 @@ if {[info exists synopsys_program_name]} {
 set innovus_enable_manual_macro_placement 1
 set enable_dft 0
 
+set FCL 0
+set split_constraints 0
+
