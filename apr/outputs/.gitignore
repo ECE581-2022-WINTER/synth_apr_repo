@@ -3,6 +3,6 @@
 *.upf*
 *.spef*
 !ORCA_TOP.floorplan.macros.def
-!ExampleRocketSystem.floorplan.innovus.*macros.def*
+!ExampleRocketSystem.floorplan.*macros.def*
 !fifo1_sram.floorplan.*macros.def*
 
