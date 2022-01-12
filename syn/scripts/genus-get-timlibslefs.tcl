@@ -7,7 +7,7 @@
 # /          $lib_dir                   /lib/ $lib_type /db_nldm
 # The variables are defined in design_config.tcl
 set search_path ""
-foreach i $lib_types { lappend search_path $lib_dir/lib/$i/db_nldm }
+foreach i $lib_types { lappend search_path $i }
 
 # Smartly find all the libraries you need
 # Will end up with sometihng like this: 
@@ -29,20 +29,39 @@ foreach i $search_path {
 }
 #lappend link_library *
 
-set lef_path ""
-foreach i $lib_types { 
-   foreach m $sub_lib_type {
-      # Trim the "_" that is needed for synopsys timing library searching.  We don't want it for lefs.
-      set n [ string trimright $m "_" ] 
-      # Change a ? to a * since there are some extra characters in the lef path in the same spot.
-      set n [ regsub {\?} $n {*} ]
-      # further munging the sub_lib_type so that it matches the lef file name.  Synopsys was not fully consistent in their naming.
-      set n [ regsub {_} $n {*} ]
-      set n [ regsub {saed32} $n {saed32*} ]
-      foreach j [ glob -nocomplain $lib_dir/lib/$i/lef/${n}*.lef ] {
-         lappend lef_path $j
+foreach i $lib_types_target { 
+   lappend search_path_target $i 
+   lappend search_path $i 
+}
+
+# Smartly find all the libraries you need
+# Will end up with sometihng like this: 
+# saed32hvt_ss0p75v125c.db saed32hvt_ss0p95v125c.db saed32rvt_ss0p75v125c.db saed32rvt_ss0p95v125c.db saed32lvt_ss0p75v125c.db saed32lvt_ss0p95v125c.db saed32sram_ss0p95v125c.db dw_foundation.sldb *
+# This contains all the VTs you want, all the corners you want, and designate any library subtypes like level shifters you might want
+# The variables are defined in the design_config.tcl
+# Example:
+#     saed32hvt_ss0p75v125c.db
+#     |sub_lib  corner    .db
+set target_library ""
+foreach i $search_path_target {
+  foreach k $synth_corners_target {
+      foreach m $sub_lib_type_target {
+        foreach j [glob -nocomplain $i/$m$k.lib ] {
+          lappend target_library [file tail $j ]
+          lappend link_library [file tail $j ]
+        }
       }
-   }
+  }
+}
+#lappend link_library *
+
+set lef_path ""
+foreach k $lef_types {
+  foreach m $sub_lef_type {
+    foreach j [glob -nocomplain $k/$m ] {
+      lappend lef_path  $j 
+    }
+  }
 }
 
 
