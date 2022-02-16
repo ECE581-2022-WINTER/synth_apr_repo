@@ -7,7 +7,7 @@
 # /          $lib_dir                   /lib/ $lib_type /db_nldm
 # The variables are defined in design_config.tcl
 set search_path ""
-foreach i $lib_types { lappend search_path $lib_dir/lib/$i/db_nldm }
+foreach i $lib_types { lappend search_path $i }
 
 # Smartly find all the libraries you need
 # Will end up with sometihng like this: 
@@ -41,25 +41,12 @@ foreach i $search_path {
 #lappend link_library *
 
 set lef_path ""
-foreach i $lib_types { 
-   foreach m $sub_lib_type {
-      # Trim the "_" that is needed for synopsys timing library searching.  We don't want it for lefs.
-      set n [ string trimright $m "_" ] 
-      # Change a ? to a * since there are some extra characters in the lef path in the same spot.
-      set n [ regsub {\?} $n {*} ]
-      # further munging the sub_lib_type so that it matches the lef file name.  Synopsys was not fully consistent in their naming.
-      set n [ regsub {_} $n {*} ]
-      set n [ regsub {saed32} $n {saed32*} ]
-
-      # Current solution for getting PLL .lef files.
-      if { $n == "saed32*pll"} {
-		set n "saed32_PLL"
-      }
-
-      foreach j [ glob -nocomplain $lib_dir/lib/$i/lef/${n}*.lef ] {
-         lappend lef_path $j
-      }
-   }
+foreach k $lef_types {
+  foreach m $sub_lef_type {
+    foreach j [glob -nocomplain $k/$m ] {
+      lappend lef_path  $j 
+    }
+  }
 }
 
 
@@ -69,7 +56,12 @@ lappend search_path .
 # Currently copy all the lef files from original locations and delete the BUSBITCHARS lines.  The "_" of  "_<>" is a problem.
 foreach i [glob -nocomplain saed*.lef ] { file delete $i }
 foreach i $lef_path {
-   exec grep -v BUSBITCHARS $i > [file tail $i ]
+   # Double check the lef file has .lef extension.  add it if needed.  Some 14nm lefs do not have lef extension.
+   set destfile [file tail $i ]
+   if { ![ regexp ".*\.lef" $destfile ]  } {
+      set destfile ${destfile}.lef
+   }
+   exec grep -v BUSBITCHARS $i > $destfile
 }
 set init_lef_file "../../cadence_cap_tech/tech.lef [glob saed*.lef]"
 

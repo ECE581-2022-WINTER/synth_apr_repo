@@ -20,10 +20,10 @@ set suffix "c.ndm 5v.ndm v.ndm"
 
 # Look for files like this "/pkgs/synopsys/2020/32_28nm/SAED32_EDK/lib/stdcell_hvt/ndm/saed32hvt$suffix"
 set libs ""
-foreach i $lib_types { 
+foreach i $ndm_types { 
     foreach j $suffix {
         foreach k $sub_lib_type {
-          foreach m [glob -nocomplain $lib_dir/lib/$i/ndm/$k$j ] {
+          foreach m [glob -nocomplain $i/$k$j ] {
             lappend libs $m
           }
         }
@@ -31,8 +31,8 @@ foreach i $lib_types {
 }
 
 
-set tf_dir "$lib_dir/tech/milkyway/"
-set tlu_dir "$lib_dir/tech/star_rcxt/"
+set tf_dir "$lib_dir/../tech/milkyway/"
+set tlu_dir "$lib_dir/../tech/star_rcxt/"
 
 #set_tlu_plus_files  -max_tluplus $tlu_dir/saed32nm_1p9m_Cmax.tluplus  \
 #                    -min_tluplus $tlu_dir/saed32nm_1p9m_Cmin.tluplus  \

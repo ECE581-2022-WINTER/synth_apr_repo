@@ -30,16 +30,17 @@ set enable_dft 0
 set innovus_enable_manual_macro_placement 0
 
 set rtl_list [list ../rtl/$top_design.sv ]
-set slow_corner "ss0p75v125c ss0p95v125c_2p25v ss0p95v125c"
+set slow_corner "ss0p95v125c_2p25v ss0p95v125c"
 set fast_corner "ff0p95vn40c ff1p16vn40c_2p75v ff1p16vn40c"
 set synth_corners $slow_corner
-#set synth_corners_target "ss0p75v125c" 
 set synth_corners_target "ss0p95v125c" 
+#set synth_corners_target "ss0p95v125c" 
 set synth_corners_slow $slow_corner
 set synth_corners_fast $fast_corner
 set slow_metal Cmax_125
 set fast_metal Cmax_125
-set lib_types "$lib_dir/sram/db_nldm/sram $lib_dir/io_std/db_nldm $lib_dir/sram/db_nldm $lib_dir/pll/db_nldm"
+set lib_types "$lib_dir/io_std/db_nldm $lib_dir/sram/db_nldm $lib_dir/pll/db_nldm"
+set ndm_types "$lib_dir/stdcell_rvt/ndm $lib_dir/stdcell_hvt/ndm $lib_dir/sram/ndm $lib_dir/io_std/ndm  $lib_dir/pll/ndm"
 set lib_types_target "$lib_dir/stdcell_rvt/db_nldm"
 # Get just the main standard cells, srams and IOs
 set sub_lib_type "saed32?vt_ saed32sram_ saed32io_wb_ saed32pll_"
