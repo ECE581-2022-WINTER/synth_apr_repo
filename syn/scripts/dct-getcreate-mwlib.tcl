@@ -9,11 +9,18 @@ exec rm -rf ${top_design}.mw
 #   /pkgs/synopsys/2020/32_28nm/SAED32_EDK/lib/stdcell_hvt/milkyway/saed32nm_hvt_1p9m
 #   /            $lib_dir                 /lib/ $lib_type /milkyway/ first_directory_found
 set mw_lib ""
-foreach i $lib_types { lappend mw_lib [lindex [glob -type d $lib_dir/lib/$i/milkyway/* ] 0 ] }
+foreach i $mwlib_types {
+   foreach j $sub_mwlib_type { 
+      set mw_lib1 [lindex [glob -nocomplain -type d $i/$j ] 0 ] 
+      if { [ llength $mw_lib1 ] > 0 } {
+         lappend mw_lib $mw_lib1 
+      }
+   }
+}
 
 # Form the Tech File and TLUplus parasitic information pointers
-set tf_dir $lib_dir/tech/milkyway
-set tlu_dir $lib_dir/tech/star_rcxt/
+set tf_dir $lib_dir/../tech/milkyway
+set tlu_dir $lib_dir/../tech/star_rcxt/
 set_tlu_plus_files  -max_tluplus $tlu_dir/saed32nm_1p9m_Cmax.tluplus  \
                     -min_tluplus $tlu_dir/saed32nm_1p9m_Cmin.tluplus  \
                     -tech2itf_map  $tlu_dir/saed32nm_tf_itf_tluplus.map
