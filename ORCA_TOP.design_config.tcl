@@ -32,7 +32,7 @@ set pad_design 0
 set design_size {1000 644 }
 set design_io_border 10
 set dc_floorplanning 1
-set enable_dft 1
+set enable_dft 0
 set innovus_enable_manual_macro_placement 1
 set split_constraints 0
 
