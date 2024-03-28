@@ -18,7 +18,7 @@ set slow_metal Cmax_125
 set fast_metal Cmax_125
 
 #set lib_types "stdcell_hvt stdcell_rvt stdcell_lvt sram"
-set lib_types "$lib_dir/io_std/db_nldm $lib_dir/sram/db_nldm $lib_dir/pll/db_nldm"
+set lib_types "$lib_dir/stdcell_rvt/db_nldm $lib_dir/stdcell_lvt/db_nldm $lib_dir/stdcell_hvt/db_nldm $lib_dir/io_std/db_nldm $lib_dir/sram/db_nldm $lib_dir/pll/db_nldm"
 set ndm_types "$lib_dir/stdcell_rvt/ndm $lib_dir/stdcell_hvt/ndm $lib_dir/stdcell_lvt/ndm $lib_dir/sram/ndm $lib_dir/io_std/ndm  $lib_dir/pll/ndm"
 set lib_types_target "$lib_dir/stdcell_rvt/db_nldm $lib_dir/stdcell_lvt/db_nldm"
 
@@ -58,9 +58,9 @@ if {[info exists synopsys_program_name]} {
            set_host_options -max_cores 4
         }
 } elseif {[get_db root: .program_short_name] == "innovus"} {
-  setMultiCpuUsage -localCpu 4 
+  setMultiCpuUsage -localCpu 8 
 } elseif {[get_db root: .program_short_name] == "genus"} {
-  set_db / .max_cpus_per_server 4 
+  set_db / .max_cpus_per_server 8 
 }
 
 set innovus_enable_manual_macro_placement 1
