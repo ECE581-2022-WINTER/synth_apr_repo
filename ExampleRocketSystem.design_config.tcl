@@ -35,7 +35,7 @@ $lib_dir/io_std/lef \
 $lib_dir/pll/lef \
 ]
 
-set sub_lef_type "saed32nm_?vt_*.lef saed32_sram_*.lef saed32io_std_wb saed32_PLL.lef"
+set sub_lef_type "saed32nm_?vt_*.lef saed32sram.lef saed32_io_wb_all.lef saed32_PLL.lef"
 
 set mwlib_types [list $lib_dir/stdcell_hvt/milkyway \
 $lib_dir/stdcell_rvt/milkyway \
