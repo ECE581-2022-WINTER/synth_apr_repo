@@ -48,6 +48,8 @@ sroute -connect {corePin padPin} -crossoverViaLayerRange {1 2}
 # Placing pins and spreading pins out. 
 #editPin -edge 3 -pin [get_attribute [get_ports *] full_name] -layer 4 -spreadDirection clockwise -spreadType RANGE -offsetStart 100 -fixedPin 1 -fixOverlap 1 
 
+
+deleteInst [get_db [ get_db insts -if ".base_cell.name==*_?VT" ] .name ]
 #source -echo -verbose ../../${top_design}.macro_placement_innovus.tcl
 defOut -noStdCells "../outputs/${top_design}.floorplan.innovus.def"
 

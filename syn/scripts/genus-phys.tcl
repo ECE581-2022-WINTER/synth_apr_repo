@@ -114,8 +114,8 @@ if { $enable_dft == 1} {
    report_scan_chains
 }
 
-
-syn_opt -spatial
+# syn_opt -spatial needs extra license in newer versions
+syn_opt 
 
 # output reports
 set stage genus_phys

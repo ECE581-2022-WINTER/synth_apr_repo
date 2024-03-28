@@ -17,6 +17,7 @@ set_db library $link_library
 set_db dft_opcg_domain_blocking true
 
 set_db auto_ungroup none
+#set_db lp_insert_clock_gating true
 
 # Analyzing the current FIFO design
 read_hdl -language sv ../rtl/${top_design}.sv
@@ -32,6 +33,8 @@ read_hdl -language sv ../rtl/${top_design}.sv
 #set_db hdlin_template_parameter_style_variable "%d" 
 # Elaborate the FIFO design
 elaborate $top_design
+
+#set_db $top_design .lp_clock_gating_cell base_cell:CGLPPRX2_RVT
 
 #return -level 9 
 

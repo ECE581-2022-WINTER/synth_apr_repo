@@ -7,7 +7,7 @@ if {[info exists synopsys_program_name]} {
 		set auto_insert_level_shifters_on_clocks all
     	}
 
-      	if { $synopsys_program_name == "icc2_shell" } {
+      	if { ($synopsys_program_name == "icc2_shell") || ($synopsys_program_name == "fc_shell") } {
 
 		####### FLOORPLANNING OPTIONS
 		if { [sizeof_collection [get_placement_blockage io_pblockage ] ] ==0 } {

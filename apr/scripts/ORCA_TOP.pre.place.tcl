@@ -4,6 +4,7 @@ read_def ../../syn/outputs/ORCA_TOP.dct.scan.def
 echo FINISHED READING SCANDEF
 
 # Creating seperate voltage area for core area. 
+remove_voltage_areas *
 create_voltage_area -power_domains PD_RISC_CORE -region {{11 400} {450 640}}
 # Commit the UPF settings for ORCA.
 commit_upf

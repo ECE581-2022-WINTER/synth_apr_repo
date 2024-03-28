@@ -1,6 +1,7 @@
 if { [info exists synopsys_program_name ] } {
 	switch $synopsys_program_name {
-	 "icc2_shell"  {
+	 "fc_shell" -
+         "icc2_shell"  {
 		# If the flow variable is set, then we should be in regular APR flow and not the macro floorplanning mode
 		# We want to use the UPF associated with the correct netlist.  APR flow uses DCT output.  Macro fp uses DC output.
 		if { [info exists flow ] } {

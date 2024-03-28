@@ -1,4 +1,4 @@
-if { [info exists synopsys_program_name ] && ($synopsys_program_name == "icc2_shell") } {
+if { [info exists synopsys_program_name ] && (($synopsys_program_name == "icc2_shell") || $synopsys_program_name == "fc_shell" ) } {
     puts " Creating ICC2 MCMM "
     create_mode func
     create_corner slow

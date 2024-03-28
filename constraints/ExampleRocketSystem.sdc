@@ -26,7 +26,7 @@ set_clock_latency -source 0.9 [get_clocks clock]
 set_clock_transition 0.13 [get_clocks clock]
 set_input_delay 0.0016 [all_inputs] -clock clock
 set_output_delay 0.0016 [all_outputs] -clock clock
-set_driving_cell -lib_cell NBUFFX8_HVT [all_inputs]
+set_driving_cell -lib_cell NBUFFX8_LVT [all_inputs]
 set_load 0.009 [all_outputs]
 set_clock_uncertainty -hold 0.001 [get_clocks clock]
 # clock skew of around 100ps
