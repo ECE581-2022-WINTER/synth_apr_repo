@@ -46,7 +46,7 @@ global top_design
      foreach_in i $pins { disconnect $i  }
      foreach_in i $pins { 
         # Connect arguments must have the driver pin/port followed by a load.  net name is optional, but needed if a new net.
-        connect -net ${this_io}_net ${this_io}/DOUT [get_db $i .name ]
+        connect -net_name ${this_io}_net ${this_io}/DOUT [get_db $i .name ]
      }
 
      # connect up the PADIO to the original port net and connect other important PAD pins.
@@ -60,7 +60,7 @@ global top_design
      # disconnect seems to be working better with the get_db object instead of the text name.
      foreach_in i $pins { disconnect $i  }
      # Connect arguments must have the driver pin/port followed by a load.  net name is optional, but needed if a new net.
-     connect -net ${this_io}_net [get_db $pins -if ".direction==out" ] $this_io/DIN
+     connect -net_name ${this_io}_net [get_db $pins -if ".direction==out" ] $this_io/DIN
      # This internal driver might drive to other loads other than the port.  It might drive back into other spots in the design.
      set other_receivers [get_db $pins -if ".direction==in" ]
      if {$other_receivers!=""} { 
